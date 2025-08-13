@@ -37,4 +37,8 @@ public class conexionDB {
         }
     }
     
+    public Connection getConnection(){
+        return connection;
+    }
+    
 }

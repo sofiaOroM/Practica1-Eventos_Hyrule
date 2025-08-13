@@ -4,6 +4,9 @@
 
 package com.eventos_hyrule;
 
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 /**
  *
  * @author sofia
@@ -11,8 +14,22 @@ package com.eventos_hyrule;
 public class Eventos_Hyrule {
 
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
         conexionDB connection = new conexionDB();
         connection.Connect();
+        
+                
+        SwingUtilities.invokeLater(() -> {
+        panelInicial app = new panelInicial();
+            app.setVisible(true);
+            
+            // Centrar la ventana en la pantalla
+            app.setLocationRelativeTo(null);
+        });
     }
 }
