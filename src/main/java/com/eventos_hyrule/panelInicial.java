@@ -5,6 +5,7 @@
 package com.eventos_hyrule;
 
 import com.eventos_hyrule.Vistas.RegistroEventoInternalFrame;
+import com.eventos_hyrule.Vistas.RegistroParticipanteInternalFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,9 +46,16 @@ private void initializeUI() {
         });
         menuEventos.add(itemRegistroEvento);
         
+        // Menú Participantes
+        JMenu menuParticipantes = new JMenu("Participantes");
+        JMenuItem itemRegistroParticipante = new JMenuItem("Registrar Participante");
+        itemRegistroParticipante.addActionListener(e -> abrirVentanaRegistroParticipante());
+        menuParticipantes.add(itemRegistroParticipante);
+
         // Añadir más menús según sea necesario (Participantes, Reportes, etc.)
         
         menuBar.add(menuEventos);
+        menuBar.add(menuParticipantes);
         setJMenuBar(menuBar);
     }
 
@@ -59,6 +67,13 @@ private void initializeUI() {
         centrarVentanaInterna(registroFrame);
     }
 
+    private void abrirVentanaRegistroParticipante() {
+        RegistroParticipanteInternalFrame registroFrame = new RegistroParticipanteInternalFrame();
+        desktopPane.add(registroFrame);
+        registroFrame.setVisible(true);
+        centrarVentanaInterna(registroFrame);
+    }
+    
     private void centrarVentanaInterna(JInternalFrame frame) {
         Dimension desktopSize = desktopPane.getSize();
         Dimension frameSize = frame.getSize();
