@@ -27,8 +27,8 @@ public class conexionDB {
         System.out.println("URL de conexion: " + URL);
         try {
             connection = DriverManager.getConnection(URL,USER_NAME, PASSWORD);
-            System.out.println("Esquema:" + connection.getSchema());
-            System.out.println("Catalogo:" + connection.getCatalog());
+            System.out.println("Esquema :" + connection.getSchema());
+            System.out.println("Catalogo :" + connection.getCatalog());
             
         } catch (Exception e) {
             System.out.println("Error de conexion");

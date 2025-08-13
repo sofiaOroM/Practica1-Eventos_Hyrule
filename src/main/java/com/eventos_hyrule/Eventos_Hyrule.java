@@ -11,7 +11,7 @@ package com.eventos_hyrule;
 public class Eventos_Hyrule {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Hello World");
         conexionDB connection = new conexionDB();
         connection.Connect();
     }
