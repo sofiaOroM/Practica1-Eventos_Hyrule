@@ -7,6 +7,7 @@ package com.eventos_hyrule;
 import com.eventos_hyrule.Vistas.RegistroActividadInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroEventoInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroInscripcionInternalFrame;
+import com.eventos_hyrule.Vistas.RegistroPagoInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroParticipanteInternalFrame;
 import javax.swing.*;
 import java.awt.*;
@@ -62,15 +63,22 @@ private void initializeUI() {
         menuActividades.add(itemRegistroActividad);
         
         //Menu Inscipciones
-        JMenu menuInscripciones = new JMenu("InsSscripciones");
+        JMenu menuInscripciones = new JMenu("Inscripciones");
         JMenuItem itemRegistroInscripcion = new JMenuItem("Registrar Inscripciones");
         itemRegistroInscripcion.addActionListener(e -> abrirVentanaRegistroInscripcion());        
         menuInscripciones.add(itemRegistroInscripcion);
+
+        //Menu Pagos
+        JMenu menuPagos = new JMenu("Pago");
+        JMenuItem itemRegistroPago = new JMenuItem("Registrar Pagos");
+        itemRegistroPago.addActionListener(e -> abrirVentanaRegistroPago());        
+        menuPagos.add(itemRegistroPago);
 
         menuBar.add(menuEventos);
         menuBar.add(menuParticipantes);
         menuBar.add(menuActividades);
         menuBar.add(menuInscripciones);
+        menuBar.add(menuPagos);
         setJMenuBar(menuBar);
     }
 
@@ -101,7 +109,14 @@ private void initializeUI() {
         desktopPane.add(registroFrame);
         registroFrame.setVisible(true);
         centrarVentanaInterna(registroFrame);
-    } 
+    }
+    
+    private void abrirVentanaRegistroPago() {
+        RegistroPagoInternalFrame registroFrame = new RegistroPagoInternalFrame();
+        desktopPane.add(registroFrame);
+        registroFrame.setVisible(true);
+        centrarVentanaInterna(registroFrame);
+    }
     
     private void centrarVentanaInterna(JInternalFrame frame) {
         Dimension desktopSize = desktopPane.getSize();
