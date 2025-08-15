@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /**
  *
  * @author sofia
@@ -28,6 +30,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
     private JTextField txtCupoMaximo;
     private JButton btnGuardar;
     private JButton btnCancelar;
+    private JTextField txtCostoEvento;
     
     private Connection connection;
 
@@ -51,6 +54,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
         txtTitulo = new JTextField(30);
         txtUbicacion = new JTextField(30);
         txtCupoMaximo = new JTextField(5);
+        txtCostoEvento = new JTextField(10);
         
         btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
@@ -67,6 +71,34 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
                 dispose();
             }
         });
+        
+        txtCodigo = new JTextField(15);
+        // Agregar DocumentListener para validación en tiempo real
+        txtCodigo.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                validarCodigo();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                validarCodigo();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                validarCodigo();
+            }
+
+            private void validarCodigo() {
+                String texto = txtCodigo.getText();
+                if (!texto.isEmpty() && !texto.matches("^EVT-\\d*$")) {
+                    txtCodigo.setForeground(Color.RED);
+                } else {
+                    txtCodigo.setForeground(Color.BLACK);
+                }
+            }
+        });
     }
 
     private void layoutComponents() {
@@ -79,7 +111,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
         // Fila 0
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(new JLabel("Código del Evento:"), gbc);
+        panel.add(new JLabel("Código del Evento (EVT-XXX):"), gbc);
         
         gbc.gridx = 1;
         panel.add(txtCodigo, gbc);
@@ -124,9 +156,17 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
         gbc.gridx = 1;
         panel.add(txtCupoMaximo, gbc);
         
-        // Fila 6 - Botones
+        // Fila 6 - Costo del Evento
         gbc.gridx = 0;
         gbc.gridy = 6;
+        panel.add(new JLabel("Costo del Evento (Q):"), gbc);
+        
+        gbc.gridx = 1;
+        panel.add(txtCostoEvento,gbc);
+
+        // Fila 6 - Botonoes
+        gbc.gridx = 0;
+        gbc.gridy = 7;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.CENTER;
         
@@ -142,8 +182,16 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
         // Validaciones
         if (txtCodigo.getText().isEmpty() || txtFecha.getText().isEmpty() || 
             txtTitulo.getText().isEmpty() || txtUbicacion.getText().isEmpty() || 
-            txtCupoMaximo.getText().isEmpty()) {
+            txtCupoMaximo.getText().isEmpty() || txtCostoEvento.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+            // Validar formato del código (EVT- seguido de dígitos)
+        String codigo = txtCodigo.getText();
+        if (!codigo.matches("^EVT-\\d+$")) {
+            JOptionPane.showMessageDialog(this, 
+                "El código debe comenzar con EVT- seguido de números (ej: EVT-001)", 
+                "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -164,9 +212,15 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
                 throw new IllegalArgumentException("La ubicación no puede tener más de 150 caracteres");
             }
             
+            //Validar el costo del evento
+            int costoEvento = (int) Double.parseDouble(txtCostoEvento.getText());
+            if (costoEvento < 0) {
+                throw new NumberFormatException("El costo no puede ser negativo");
+            }
+            
             // Insertar en la base de datos
-            String sql = "INSERT INTO EVENTO (codigo_evento, fecha_evento, tipo_evento, titulo_evento, ubicacion_evento, cupo_maximo_evento) " +
-                         "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO EVENTO (codigo_evento, fecha_evento, tipo_evento, titulo_evento, ubicacion_evento, cupo_maximo_evento, costo_evento) " +
+                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
             
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 pstmt.setString(1, txtCodigo.getText());
@@ -175,6 +229,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
                 pstmt.setString(4, txtTitulo.getText());
                 pstmt.setString(5, txtUbicacion.getText());
                 pstmt.setInt(6, cupoMaximo);
+                pstmt.setInt(7, costoEvento);
                 
                 int affectedRows = pstmt.executeUpdate();
                 
@@ -188,7 +243,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Use dd/mm/aaaa", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El cupo máximo debe ser un número entero positivo", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cupo máximo debe ser un número entero positivo y el costo un número válido", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {
