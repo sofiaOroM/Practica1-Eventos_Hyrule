@@ -205,8 +205,8 @@ public class RegistroActividadInternalFrame extends javax.swing.JInternalFrame {
         }
         
         // Validar formato de código de actividad
-        if (!txtCodigoActividad.getText().matches("^ACT-\\d{3}$")) {
-            JOptionPane.showMessageDialog(this, "Código de actividad inválido. Debe ser ACT- seguido de 3 dígitos", "Error", JOptionPane.ERROR_MESSAGE);
+        if (!txtCodigoActividad.getText().matches("^ACT-\\d+$")) {
+            JOptionPane.showMessageDialog(this, "Código de actividad inválido. Debe ser ACT- seguido de dígitos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
