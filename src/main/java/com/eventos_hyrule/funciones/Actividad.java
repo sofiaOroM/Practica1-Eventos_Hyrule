@@ -4,6 +4,7 @@
  */
 package com.eventos_hyrule.funciones;
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 /**
@@ -13,14 +14,18 @@ import java.time.LocalTime;
 public class Actividad {
     private String codigoActividad;
     private String codigoEvento;
-    private String tipoActividad;
+    private TipoActividad tipoActividad;
     private String tituloActividad;
     private String emailEncargado;
-    private String horaInicio;
-    private String horaFin;
+    private Time horaInicio;
+    private Time horaFin;
     private int cupoMaximo;
+    
+    public enum TipoActividad {
+        CGARLA, TALLER, DEBATE, OTRA
+    }
 
-    public Actividad(String codigoActividad, String codigoEvento, String tipoActividad, String tituloActividad, String emailEncargado, String horaInicio, String horaFin, int cupoMaximo) {
+    public Actividad(String codigoActividad, String codigoEvento, TipoActividad tipoActividad, String tituloActividad, String emailEncargado, Time horaInicio, Time horaFin, int cupoMaximo) {
         this.codigoActividad = codigoActividad;
         this.codigoEvento = codigoEvento;
         this.tipoActividad = tipoActividad;
@@ -47,11 +52,11 @@ public class Actividad {
         this.codigoEvento = codigoEvento;
     }
 
-    public String getTipoActividad() {
+    public TipoActividad getTipoActividad() {
         return tipoActividad;
     }
 
-    public void setTipoActividad(String tipoActividad) {
+    public void setTipoActividad(TipoActividad tipoActividad) {
         this.tipoActividad = tipoActividad;
     }
 
@@ -71,19 +76,19 @@ public class Actividad {
         this.emailEncargado = emailEncargado;
     }
 
-    public String getHoraInicio() {
+    public Time getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(String horaInicio) {
+    public void setHoraInicio(Time horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public String getHoraFin() {
+    public Time getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(String horaFin) {
+    public void setHoraFin(Time horaFin) {
         this.horaFin = horaFin;
     }
 
