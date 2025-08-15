@@ -5,6 +5,7 @@
 package com.eventos_hyrule;
 
 import com.eventos_hyrule.Vistas.RegistroActividadInternalFrame;
+import com.eventos_hyrule.Vistas.RegistroAsistenciaInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroEventoInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroInscripcionInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroPagoInternalFrame;
@@ -13,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 /**
  *
@@ -20,6 +22,7 @@ import java.awt.event.ActionListener;
  */
 public class panelInicial extends javax.swing.JFrame {
     private JDesktopPane desktopPane;
+    private Connection connection;
 
     public panelInicial() {
         super("Sistema de Gestión de Eventos - Hyrule");
@@ -74,17 +77,12 @@ private void initializeUI() {
         itemRegistroPago.addActionListener(e -> abrirVentanaRegistroPago());        
         menuPagos.add(itemRegistroPago);
 
-        //Menu Asistencia
-        JMenu menuAsistencia = new JMenu("Asistencia");
-        JMenuItem itemRegistroAsistencia = new JMenuItem("Registrar Asistencia");
-//        itemRegistroAsistencia.addActionListener(e -> abrirVentanaRegistroAsistencia());        
-        menuAsistencia.add(itemRegistroAsistencia);
-
         menuBar.add(menuEventos);
         menuBar.add(menuParticipantes);
         menuBar.add(menuActividades);
         menuBar.add(menuInscripciones);
         menuBar.add(menuPagos);
+        menuBar.add(menuAsistencia);
         setJMenuBar(menuBar);
     }
 
@@ -124,13 +122,6 @@ private void initializeUI() {
         centrarVentanaInterna(registroFrame);
     }
     
-/*    private void abrirVentanaRegistroAsistencia() {
-        RegistroAsistenciaInternalFrame registroFrame = new RegistroAsistenciaInternalFrame();
-        desktopPane.add(registroFrame);
-        registroFrame.setVisible(true);
-        centrarVentanaInterna(registroFrame);
-    }
-*/    
     private void centrarVentanaInterna(JInternalFrame frame) {
         Dimension desktopSize = desktopPane.getSize();
         Dimension frameSize = frame.getSize();

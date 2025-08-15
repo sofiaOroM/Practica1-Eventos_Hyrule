@@ -48,11 +48,11 @@ public class Participante {
         this.tipoParticipante = tipoParticipante;
     }
 
-    public String getInstritucion() {
+    public String getInstitucion() {
         return institucion;
     }
 
-    public void setInstritucion(String instritucion) {
+    public void setInstitucion(String instritucion) {
         this.institucion = instritucion;
     }
     
@@ -61,4 +61,13 @@ public class Participante {
         return nombreCompleto + " (" + emailParticipante + ") ";
     }
     
+        // Método para validar email
+    public boolean emailValido() {
+        return emailParticipante != null && emailParticipante.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    }
+
+    // Método para validar nombre
+    public boolean nombreValido() {
+        return nombreCompleto != null && nombreCompleto.length() <= 45 && !nombreCompleto.isEmpty();
+    }
 }
