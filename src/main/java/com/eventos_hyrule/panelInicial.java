@@ -10,6 +10,7 @@ import com.eventos_hyrule.Vistas.RegistroEventoInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroInscripcionInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroPagoInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroParticipanteInternalFrame;
+import com.eventos_hyrule.Vistas.ReportesInternalFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -82,13 +83,20 @@ private void initializeUI() {
         JMenuItem itemRegistroAsistencia = new JMenuItem("Registrar Asistencias");
         itemRegistroAsistencia.addActionListener(e -> abrirVentanaRegistroAsistencia());        
         menuAsistencias.add(itemRegistroAsistencia);
-        
+
+        //Menu Reportes
+        JMenu menuReportes = new JMenu("Reportes");
+        JMenuItem itemReportes = new JMenuItem("Reportes");
+        itemReportes.addActionListener(e -> abrirVentanaReportes());        
+        menuReportes.add(itemReportes);
+              
         menuBar.add(menuEventos);
         menuBar.add(menuParticipantes);
         menuBar.add(menuActividades);
         menuBar.add(menuInscripciones);
         menuBar.add(menuPagos);
         menuBar.add(menuAsistencias);
+        menuBar.add(menuReportes);
         setJMenuBar(menuBar);
     }
 
@@ -130,6 +138,13 @@ private void initializeUI() {
     
     private void abrirVentanaRegistroAsistencia() {
         RegistroAsistenciaInternalFrame registroFrame = new RegistroAsistenciaInternalFrame();
+        desktopPane.add(registroFrame);
+        registroFrame.setVisible(true);
+        centrarVentanaInterna(registroFrame);
+    }
+    
+    private void abrirVentanaReportes() {
+        ReportesInternalFrame registroFrame = new ReportesInternalFrame();
         desktopPane.add(registroFrame);
         registroFrame.setVisible(true);
         centrarVentanaInterna(registroFrame);
