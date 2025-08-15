@@ -300,7 +300,7 @@ public class ReportesInternalFrame extends javax.swing.JInternalFrame {
                    .append("</body>\n</html>");
                 
                 // Guardar archivo
-                guardarArchivoHTML(html.toString(), "reporte_participantes");
+                guardarYMostrarReporte(html.toString(), "reporte_participantes");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al generar reporte: " + ex.getMessage(), 
@@ -594,36 +594,6 @@ public class ReportesInternalFrame extends javax.swing.JInternalFrame {
         return "<p style='margin-top: 30px; font-size: 0.9em; color: #777;'>" +
               "Reporte generado el " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()) +
               "</p>\n";
-    }
-    
-    private void guardarArchivoHTML(String contenido, String nombreBase) {
-        fileChooser.setSelectedFile(new File(nombreBase + "_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".html"));
-
-        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-
-            // Asegurar extensión .html
-            if (!file.getName().toLowerCase().endsWith(".html")) {
-                file = new File(file.getAbsolutePath() + ".html");
-            }
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                writer.write(contenido);
-                JOptionPane.showMessageDialog(this, 
-                    "Reporte generado exitosamente en:\n" + file.getAbsolutePath(), 
-                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-                // Opción para abrir el reporte automáticamente
-                if (Desktop.isDesktopSupported()) {
-                    Desktop.getDesktop().browse(file.toURI());
-                }
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, 
-                    "Error al guardar el archivo: " + ex.getMessage(), 
-                    "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-            }
-        }
     }
     
     private void guardarYMostrarReporte(String contenido, String nombreBase) {
