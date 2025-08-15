@@ -186,7 +186,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-            // Validar formato del código (EVT- seguido de dígitos)
+        // Validar formato del código (EVT- seguido de dígitos)
         String codigo = txtCodigo.getText();
         if (!codigo.matches("^EVT-\\d+$")) {
             JOptionPane.showMessageDialog(this, 
@@ -243,7 +243,7 @@ public class RegistroEventoInternalFrame extends JInternalFrame {
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Use dd/mm/aaaa", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El cupo máximo debe ser un número entero positivo y el costo un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cupo máximo debe ser un número entero positivo y el costo un número válido (puede ser 0.00 si es gratis", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {
