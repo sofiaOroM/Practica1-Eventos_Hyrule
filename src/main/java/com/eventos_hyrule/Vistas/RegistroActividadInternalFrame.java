@@ -242,8 +242,8 @@ public class RegistroActividadInternalFrame extends javax.swing.JInternalFrame {
         String emailEncargado = encargadoSeleccionado.split(" - ")[0];
         
         // Insertar en la base de datos
-        String sql = "INSERT INTO ACTIVIDAD (codigo_actividad, codigo_evento, tipo_actividad, titulo, " +
-                     "email_encargado, hora_inicio, hora_fin, cupo_maximo) " +
+        String sql = "INSERT INTO ACTIVIDAD (codigo_actividad, codigo_evento, tipo_actividad, titulo_actividad, " +
+                     "email_encargado, hora_inicio, hora_fin, cupo_maximo_actividad) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
