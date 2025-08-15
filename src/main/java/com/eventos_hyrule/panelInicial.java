@@ -74,6 +74,12 @@ private void initializeUI() {
         itemRegistroPago.addActionListener(e -> abrirVentanaRegistroPago());        
         menuPagos.add(itemRegistroPago);
 
+        //Menu Asistencia
+        JMenu menuAsistencia = new JMenu("Asistencia");
+        JMenuItem itemRegistroAsistencia = new JMenuItem("Registrar Asistencia");
+//        itemRegistroAsistencia.addActionListener(e -> abrirVentanaRegistroAsistencia());        
+        menuAsistencia.add(itemRegistroAsistencia);
+
         menuBar.add(menuEventos);
         menuBar.add(menuParticipantes);
         menuBar.add(menuActividades);
@@ -118,6 +124,13 @@ private void initializeUI() {
         centrarVentanaInterna(registroFrame);
     }
     
+/*    private void abrirVentanaRegistroAsistencia() {
+        RegistroAsistenciaInternalFrame registroFrame = new RegistroAsistenciaInternalFrame();
+        desktopPane.add(registroFrame);
+        registroFrame.setVisible(true);
+        centrarVentanaInterna(registroFrame);
+    }
+*/    
     private void centrarVentanaInterna(JInternalFrame frame) {
         Dimension desktopSize = desktopPane.getSize();
         Dimension frameSize = frame.getSize();
