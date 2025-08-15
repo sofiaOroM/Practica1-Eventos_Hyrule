@@ -17,20 +17,30 @@ public class Evento {
     private String tituloEvento;
     private String ubicacion;
     private int cupoMaximo;
+    private double costoEvento;
     
     public enum TipoEvento { 
         CHARLA, CONGRESO, TALLER, DEBATE
     }
     
     public Evento(String codigoEvento, Date fechaEvento, TipoEvento tipoEvento, String tituloEvento, 
-            String ubicacion, int cupoMaximo){
+            String ubicacion, int cupoMaximo, int costoEvento){
         this.codigoEvento = codigoEvento;
         this.fechaEvento = fechaEvento;
         this.tipoEvento = tipoEvento;
         this.tituloEvento = tituloEvento;
         this.ubicacion = ubicacion;
-        this.cupoMaximo = cupoMaximo;        
+        this.cupoMaximo = cupoMaximo; 
+        this.costoEvento = costoEvento;
         
+    }
+
+    public double getCostoEvento() {
+        return costoEvento;
+    }
+
+    public void setCostoEvento(double costoEvento) {
+        this.costoEvento = costoEvento;
     }
 
     public String getCodigoEvento() {
