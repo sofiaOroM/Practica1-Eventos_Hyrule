@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.eventos_hyrule.Vistas;
-
 import com.eventos_hyrule.conexionDB;
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 /**
  *
  * @author sofia
@@ -43,7 +41,6 @@ public class RegistroParticipanteInternalFrame extends javax.swing.JInternalFram
         initComponent();
         layoutComponents();
     }
-
     private void initComponent() {
         txtNombre = new JTextField(30);
         cmbTipoParticipante = new JComboBox<>(new String[]{"ESTUDIANTE", "PROFESIONAL", "INVITADO"});
@@ -66,7 +63,6 @@ public class RegistroParticipanteInternalFrame extends javax.swing.JInternalFram
             }
         });
     }
-
     private void layoutComponents() {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -119,7 +115,6 @@ public class RegistroParticipanteInternalFrame extends javax.swing.JInternalFram
         
         setContentPane(panel);
     }
-
     private void guardarParticipante() {
         // Validaciones
         if (txtNombre.getText().isEmpty() || txtInstitucion.getText().isEmpty() || txtEmail.getText().isEmpty()) {
@@ -187,7 +182,6 @@ public class RegistroParticipanteInternalFrame extends javax.swing.JInternalFram
     
     private boolean correoYaRegistrado(String email) {
         String sql = "SELECT COUNT(*) FROM PARTICIPANTE WHERE email_participante = ?";
-
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, email);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -201,7 +195,6 @@ public class RegistroParticipanteInternalFrame extends javax.swing.JInternalFram
         }
         return false; // Por defecto asumimos que no existe si hay error
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
