@@ -15,6 +15,9 @@ public class ParticipanteEvento {
     private String metodoPago;
     private double montoPagado;
 
+    public enum TipoParticipante{
+        ESTUDIANTE, PROFESIONAL, INVITADO
+    }
     public ParticipanteEvento(String email, String nombre, String tipoParticipante, String metodoPago, double montoPagado) {
         this.email = email;
         this.nombre = nombre;
