@@ -4,6 +4,8 @@
  */
 package com.eventos_hyrule;
 
+import com.eventos_hyrule.Controlador.CertificadoControlador;
+import com.eventos_hyrule.Vistas.CertificadosInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroActividadInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroAsistenciaInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroEventoInternalFrame;
@@ -89,7 +91,13 @@ private void initializeUI() {
         JMenuItem itemReportes = new JMenuItem("Reportes");
         itemReportes.addActionListener(e -> abrirVentanaReportes());        
         menuReportes.add(itemReportes);
-              
+         
+        //Menu Reportes
+        JMenu menuCertificados = new JMenu("Certificados");
+        JMenuItem itemCertificados = new JMenuItem("Certificados");
+        itemCertificados.addActionListener(e -> abrirVentanaCertificados());        
+        menuCertificados.add(itemCertificados);
+        
         menuBar.add(menuEventos);
         menuBar.add(menuParticipantes);
         menuBar.add(menuActividades);
@@ -97,6 +105,7 @@ private void initializeUI() {
         menuBar.add(menuPagos);
         menuBar.add(menuAsistencias);
         menuBar.add(menuReportes);
+        menuBar.add(menuCertificados);
         setJMenuBar(menuBar);
     }
 
@@ -145,6 +154,15 @@ private void initializeUI() {
     
     private void abrirVentanaReportes() {
         ReportesInternalFrame registroFrame = new ReportesInternalFrame();
+        desktopPane.add(registroFrame);
+        registroFrame.setVisible(true);
+        centrarVentanaInterna(registroFrame);
+    }
+     
+    private void abrirVentanaCertificados() {
+        CertificadoControlador certificadoControlador = new CertificadoControlador(connection);
+        CertificadosInternalFrame registroFrame = new CertificadosInternalFrame(certificadoControlador, 
+        desktopPane);
         desktopPane.add(registroFrame);
         registroFrame.setVisible(true);
         centrarVentanaInterna(registroFrame);
