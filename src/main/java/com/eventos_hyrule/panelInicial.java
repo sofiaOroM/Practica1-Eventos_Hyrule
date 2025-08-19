@@ -13,6 +13,7 @@ import com.eventos_hyrule.Vistas.RegistroInscripcionInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroPagoInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroParticipanteInternalFrame;
 import com.eventos_hyrule.Vistas.ReportesInternalFrame;
+import com.eventos_hyrule.funciones.DesktopPaneConFondo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,9 +37,11 @@ private void initializeUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 700);
         setLocationRelativeTo(null);
+        
+        String rutaImagen = "C:/Users/sofia/OneDrive/Documentos/NetBeansProjects/Eventos_Hyrule/fondo.png";
 
         // Crear el JDesktopPane
-        desktopPane = new JDesktopPane();
+        desktopPane = new DesktopPaneConFondo(rutaImagen);
         setContentPane(desktopPane);
 
         // Crear la barra de menú
