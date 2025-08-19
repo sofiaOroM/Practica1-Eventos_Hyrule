@@ -22,7 +22,7 @@ public class Actividad {
     private int cupoMaximo;
     
     public enum TipoActividad {
-        CGARLA, TALLER, DEBATE, OTRA
+        CHARLA, TALLER, DEBATE, OTRA
     }
 
     public Actividad(String codigoActividad, String codigoEvento, TipoActividad tipoActividad, String tituloActividad, String emailEncargado, Time horaInicio, Time horaFin, int cupoMaximo) {

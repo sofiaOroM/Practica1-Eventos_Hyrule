@@ -5,6 +5,7 @@
 package com.eventos_hyrule;
 
 import com.eventos_hyrule.Controlador.CertificadoControlador;
+import com.eventos_hyrule.Vistas.CargaArchivosInternalFrame;
 import com.eventos_hyrule.Vistas.CertificadosInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroActividadInternalFrame;
 import com.eventos_hyrule.Vistas.RegistroAsistenciaInternalFrame;
@@ -95,11 +96,17 @@ private void initializeUI() {
         itemReportes.addActionListener(e -> abrirVentanaReportes());        
         menuReportes.add(itemReportes);
          
-        //Menu Reportes
+        //Menu Certificados
         JMenu menuCertificados = new JMenu("Certificados");
         JMenuItem itemCertificados = new JMenuItem("Certificados");
         itemCertificados.addActionListener(e -> abrirVentanaCertificados());        
         menuCertificados.add(itemCertificados);
+        
+        //Menu Certificados
+        JMenu menuCargarArchivo = new JMenu("Cargar Archivos");
+        JMenuItem itemCargarArchivo = new JMenuItem("Cargar Archivos");
+        itemCargarArchivo.addActionListener(e -> abrirVentanaCargarArchivo());        
+        menuCargarArchivo.add(itemCargarArchivo);
         
         menuBar.add(menuEventos);
         menuBar.add(menuParticipantes);
@@ -109,6 +116,7 @@ private void initializeUI() {
         menuBar.add(menuAsistencias);
         menuBar.add(menuReportes);
         menuBar.add(menuCertificados);
+        menuBar.add(menuCargarArchivo);
         setJMenuBar(menuBar);
     }
 
@@ -166,6 +174,13 @@ private void initializeUI() {
         CertificadoControlador certificadoControlador = new CertificadoControlador(connection);
         CertificadosInternalFrame registroFrame = new CertificadosInternalFrame(certificadoControlador, 
         desktopPane);
+        desktopPane.add(registroFrame);
+        registroFrame.setVisible(true);
+        centrarVentanaInterna(registroFrame);
+    }
+    
+    private void abrirVentanaCargarArchivo() {
+        CargaArchivosInternalFrame registroFrame = new CargaArchivosInternalFrame();
         desktopPane.add(registroFrame);
         registroFrame.setVisible(true);
         centrarVentanaInterna(registroFrame);

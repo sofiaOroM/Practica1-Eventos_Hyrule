@@ -115,17 +115,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtArchivoEntrada">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtArchivoEntradaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDirectorioSalida">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spnVelocidad">
         </Component>

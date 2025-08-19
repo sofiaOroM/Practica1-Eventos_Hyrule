@@ -17,7 +17,7 @@ public class Participante {
         ESTUDIANTE, PROFESIONAL, INVITADO
     }
     
-    public Participante(String emailParticipante, String nombreCompleto, TipoParticipante tipoParticipanete, String institucion){
+    public Participante(String emailParticipante, String nombreCompleto, TipoParticipante tipoParticipante, String institucion){
         this.emailParticipante = emailParticipante;
         this.nombreCompleto = nombreCompleto;
         this.tipoParticipante = tipoParticipante;
