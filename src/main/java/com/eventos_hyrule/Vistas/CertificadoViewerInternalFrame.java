@@ -114,38 +114,6 @@ class CertificadoViewerInternalFrame extends JInternalFrame{
            "</body>" +
            "</html>";
 }
-    private String generarHtmlCertificad() {
-      
-        return "<!DOCTYPE html>" +
-               "<html>" +
-               "<head>" +
-               "<title>Certificado de Participación</title>" +
-               "<style>" +
-               "body { font-family: Arial, sans-serif; margin: 30px; background-color: #f9f9f9; }" +
-               ".certificado { border: 3px solid #2c3e50; padding: 30px; background-color: white; " +
-               "box-shadow: 0 0 15px rgba(0,0,0,0.1); text-align: center; }" +
-               ".titulo { color: #2c3e50; font-size: 28px; font-weight: bold; margin-bottom: 30px; }" +
-               ".nombre { font-size: 22px; margin: 25px 0; color: #3498db; }" +
-               ".evento { font-size: 20px; margin: 20px 0; color: #16a085; }" +
-               ".fecha { font-size: 16px; margin-top: 40px; color: #7f8c8d; }" +
-               ".codigo { font-size: 14px; color: #95a5a6; margin-top: 20px; }" +
-               "</style>" +
-               "</head>" +
-               "<body>" +
-               "<div class='certificado'>" +
-               "<div class='titulo'>CERTIFICADO DE PARTICIPACIÓN</div>" +
-               "<p>La organización certifica que:</p>" +
-               "<div class='nombre'>" + certificado.getNombreParticipante() + "</div>" +
-               "<p>con email <strong>" + certificado.getEmailParticipante() + "</strong></p>" +
-               "<p>participó activamente en el evento:</p>" +
-               "<div class='evento'>" + certificado.getTituloEvento() + "</div>" +
-               "<p>realizado el " + certificado.getFechaEvento() + "</p>" +
-               "<div class='fecha'>Certificado emitido el: " + certificado.getFechaEmisionFormateada() + "</div>" +
-               "<div class='codigo'>Código de certificado: " + certificado.getIdCertificado() + "</div>" +
-               "</div>" +
-               "</body>" +
-               "</html>";
-    }
     
     private void abrirEnNavegador() {
         try {
